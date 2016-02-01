@@ -13,6 +13,8 @@
 		2ED0752E1C5FC40B004625E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ED0752C1C5FC40B004625E0 /* Main.storyboard */; };
 		2ED075301C5FC40B004625E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2ED0752F1C5FC40B004625E0 /* Assets.xcassets */; };
 		2ED075331C5FC40B004625E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ED075311C5FC40B004625E0 /* LaunchScreen.storyboard */; };
+		2ED0753C1C5FCC02004625E0 /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ED0753B1C5FCC02004625E0 /* Movie.m */; };
+		2ED0753F1C5FCDA6004625E0 /* MovieCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ED0753E1C5FCDA6004625E0 /* MovieCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,10 @@
 		2ED0752F1C5FC40B004625E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2ED075321C5FC40B004625E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2ED075341C5FC40B004625E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2ED0753A1C5FCC02004625E0 /* Movie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Movie.h; sourceTree = "<group>"; };
+		2ED0753B1C5FCC02004625E0 /* Movie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Movie.m; sourceTree = "<group>"; };
+		2ED0753D1C5FCDA6004625E0 /* MovieCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieCell.h; sourceTree = "<group>"; };
+		2ED0753E1C5FCDA6004625E0 /* MovieCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +68,10 @@
 				2ED075271C5FC40B004625E0 /* AppDelegate.m */,
 				2ED075291C5FC40B004625E0 /* ViewController.h */,
 				2ED0752A1C5FC40B004625E0 /* ViewController.m */,
+				2ED0753A1C5FCC02004625E0 /* Movie.h */,
+				2ED0753B1C5FCC02004625E0 /* Movie.m */,
+				2ED0753D1C5FCDA6004625E0 /* MovieCell.h */,
+				2ED0753E1C5FCDA6004625E0 /* MovieCell.m */,
 				2ED0752C1C5FC40B004625E0 /* Main.storyboard */,
 				2ED0752F1C5FC40B004625E0 /* Assets.xcassets */,
 				2ED075311C5FC40B004625E0 /* LaunchScreen.storyboard */,
@@ -150,7 +160,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2ED0752B1C5FC40B004625E0 /* ViewController.m in Sources */,
+				2ED0753F1C5FCDA6004625E0 /* MovieCell.m in Sources */,
 				2ED075281C5FC40B004625E0 /* AppDelegate.m in Sources */,
+				2ED0753C1C5FCC02004625E0 /* Movie.m in Sources */,
 				2ED075251C5FC40A004625E0 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
