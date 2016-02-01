@@ -18,6 +18,6 @@
 
 -(instancetype)initWithTitle:(NSString*)title image:(NSString*)image;
 
--(void)getReviews;
+-(void)getReviews:(void(^)(void))callBack;
 
 @end

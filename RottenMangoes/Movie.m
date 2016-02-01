@@ -21,7 +21,7 @@
     return self;
 }
 
--(void)getReviews {
+-(void)getReviews:(void(^)(void))callBack {
     
     if (!self.reviewsArray) {
         self.reviewsArray = [[NSMutableArray alloc]init];
@@ -32,9 +32,11 @@
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
         if (!error) {
             NSError *jsonParsingError;
             NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonParsingError];
+            NSLog(@"JSON data: %@", jsonData);
             if (!jsonParsingError) {
                 NSLog(@"%@", self.title);
                 for (NSDictionary *reviewDictionary in jsonData[@"reviews"]) {
@@ -46,11 +48,13 @@
                         review.quote = reviewDictionary[@"quote"];
                         review.link = reviewDictionary[@"link"];
                         [self.reviewsArray addObject:review];
-                        NSLog(@"%@", review.critic);
+                    NSLog(@"critic: %@", review.critic);
+
                     
                 }
                 dispatch_async(dispatch_get_main_queue(), ^{
 //                    [self.collectionView reloadData];
+                    callBack();
                 });
             }
         }

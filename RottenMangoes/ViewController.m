@@ -15,6 +15,7 @@
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) NSMutableArray *moviesArray;
 @property (strong,nonatomic) UICollectionViewFlowLayout *mainLayout;
+@property (nonatomic, assign) int cellLength;
 
 @end
 
@@ -23,8 +24,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.cellLength = 150;
+    
     self.mainLayout = [[UICollectionViewFlowLayout alloc] init];
-    self.mainLayout.itemSize = CGSizeMake(200, 200);
+    self.mainLayout.itemSize = CGSizeMake(self.cellLength, self.cellLength);
     self.mainLayout.minimumInteritemSpacing = 1;
     self.mainLayout.minimumLineSpacing = 1;
     self.mainLayout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
@@ -62,8 +65,10 @@
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.collectionView indexPathForCell:sender];
         Movie *movie = self.moviesArray[indexPath.item];
-        [movie getReviews];
         MovieDetailViewController *controller = (MovieDetailViewController *)[segue destinationViewController];
+        [movie getReviews:^{
+            [controller setDetailItem: movie];
+        }];
         controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
         controller.navigationItem.leftItemsSupplementBackButton = YES;
     }

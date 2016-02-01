@@ -12,5 +12,6 @@
 
 @interface MovieDetailViewController : UIViewController
 
+@property (strong, nonatomic) id detailItem;
 
 @end
