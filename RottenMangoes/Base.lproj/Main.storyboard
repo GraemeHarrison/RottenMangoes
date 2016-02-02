@@ -19,8 +19,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="EB7-kS-Mc0">
-                                <rect key="frame" x="-4" y="0.0" width="328" height="568"/>
-                                <color key="backgroundColor" red="1" green="0.80000000000000004" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="8uX-Xl-cPl">
                                     <size key="itemSize" width="200" height="200"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -29,13 +29,13 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MovieCell" id="3Lc-eH-SHy" customClass="MovieCell">
-                                        <rect key="frame" x="64" y="64" width="200" height="200"/>
+                                        <rect key="frame" x="60" y="64" width="200" height="200"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s69-by-HWX">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s69-by-HWX">
                                                     <rect key="frame" x="8" y="8" width="184" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -47,6 +47,7 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="trailingMargin" secondItem="2wg-ax-EZQ" secondAttribute="trailing" id="2uH-h0-GiP"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="s69-by-HWX" secondAttribute="trailing" id="Bs4-1D-3SQ"/>
@@ -71,12 +72,12 @@
                                 </connections>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.80000000000000004" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="leadingMargin" secondItem="EB7-kS-Mc0" secondAttribute="leading" constant="20" id="Z4h-uC-Ml7"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="EB7-kS-Mc0" secondAttribute="trailing" constant="-20" id="c7G-bQ-7ee"/>
+                            <constraint firstItem="EB7-kS-Mc0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="5kv-VP-ptQ"/>
+                            <constraint firstItem="EB7-kS-Mc0" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="NF0-ke-fxL"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="EB7-kS-Mc0" secondAttribute="bottom" id="lVP-Py-ujb"/>
-                            <constraint firstItem="EB7-kS-Mc0" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="z4Y-4d-kD8"/>
+                            <constraint firstAttribute="trailing" secondItem="EB7-kS-Mc0" secondAttribute="trailing" id="r6V-UQ-65K"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Movies" id="aIQ-9Q-spJ"/>
@@ -191,7 +192,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.80000000000000004" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="ht3-y6-r9t" firstAttribute="top" secondItem="ky4-qx-Z53" secondAttribute="bottom" constant="4" id="1d3-GU-TMk"/>
                             <constraint firstAttribute="trailingMargin" secondItem="gPQ-dH-VrG" secondAttribute="trailing" id="2TP-N8-jG2"/>

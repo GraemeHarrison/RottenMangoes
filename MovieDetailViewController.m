@@ -9,6 +9,7 @@
 #import "MovieDetailViewController.h"
 
 @interface MovieDetailViewController ()
+
 @property (strong, nonatomic) IBOutlet UILabel *critic1;
 @property (strong, nonatomic) IBOutlet UILabel *critic2;
 @property (strong, nonatomic) IBOutlet UILabel *critic3;
@@ -56,7 +57,7 @@
             self.quote1.text = [NSString stringWithFormat:@"Quote: %@", review1.quote];
             self.link1.text = [NSString stringWithFormat:@"Link: %@", review1.link];
         }
-        
+
         if ([movie.reviewsArray count]>1) {
             Review *review2 = [movie.reviewsArray objectAtIndex:1];
             self.critic2.text = [NSString stringWithFormat:@"Critic: %@", review2.critic];
@@ -78,7 +79,6 @@
         }
     }
 }
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];

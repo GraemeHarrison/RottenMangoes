@@ -24,20 +24,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.cellLength = 150;
-    
+    self.cellLength = (self.view.frame.size.width)/2.0;
     self.mainLayout = [[UICollectionViewFlowLayout alloc] init];
     self.mainLayout.itemSize = CGSizeMake(self.cellLength, self.cellLength);
     self.mainLayout.minimumInteritemSpacing = 1;
     self.mainLayout.minimumLineSpacing = 1;
-    self.mainLayout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
+    self.mainLayout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0); // (Left, Right, Top, Bottom)
     self.collectionView.collectionViewLayout = self.mainLayout;
-    self.mainLayout.headerReferenceSize = CGSizeMake(CGRectGetWidth(self.collectionView.frame), 40);
     
     self.moviesArray = [[NSMutableArray alloc] init];
     
     NSURLSession *session = [NSURLSession sharedSession];
-    NSString *urlString = @"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=h8ym7ry7kkur36j7ku482y9z";
+    NSString *urlString = @"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=h8ym7ry7kkur36j7ku482y9z&page_limit=50";
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {

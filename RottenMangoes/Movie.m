@@ -36,21 +36,16 @@
         if (!error) {
             NSError *jsonParsingError;
             NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonParsingError];
-            NSLog(@"JSON data: %@", jsonData);
             if (!jsonParsingError) {
-                NSLog(@"%@", self.title);
                 for (NSDictionary *reviewDictionary in jsonData[@"reviews"]) {
                         Review *review = [[Review alloc] init];
                         review.critic = reviewDictionary[@"critic"];
-                        review.date = reviewDictionary[@"posters"][@"date"];
+                        review.date = reviewDictionary[@"date"];
                         review.freshness = reviewDictionary[@"freshness"];
                         review.publication = reviewDictionary[@"publication"];
                         review.quote = reviewDictionary[@"quote"];
-                        review.link = reviewDictionary[@"link"];
+                        review.link = reviewDictionary[@"links"][@"review"];
                         [self.reviewsArray addObject:review];
-                    NSLog(@"critic: %@", review.critic);
-
-                    
                 }
                 dispatch_async(dispatch_get_main_queue(), ^{
 //                    [self.collectionView reloadData];
