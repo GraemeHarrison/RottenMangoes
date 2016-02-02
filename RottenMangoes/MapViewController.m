@@ -17,27 +17,46 @@
 @property (assign, nonatomic) BOOL initialLocationSet;
 @property (strong, nonatomic) NSMutableArray *theatresArray;
 @property (strong, nonatomic) NSString *postalCode;
+@property (assign, nonatomic) BOOL isPostalCodeSet;
 @property (strong, nonatomic) Movie *movie;
+
 
 @end
 
 @implementation MapViewController
 
+- (void)setDetailItem:(id)newDetailItem {
+    if (_detailItem != newDetailItem) {
+        _detailItem = newDetailItem;
+        
+        // Update the view.
+        [self configureView];
+    }
+}
+
+- (void)configureView {
+    // Update the user interface for the detail item.
+    if (self.detailItem) {
+        
+        self.movie = (Movie*) self.detailItem;
+        NSLog(@"movie title: %@", self.movie.title);
+        
+        self.mapView.delegate = self;
+        self.initialLocationSet = NO;
+        self.isPostalCodeSet = NO;
+        self.locationManager = [[CLLocationManager alloc]init];
+        self.locationManager.delegate = self;
+        
+        if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined) {
+            [self.locationManager requestWhenInUseAuthorization];
+        }
+        
+        self.theatresArray = [[NSMutableArray alloc]init];
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.mapView.delegate = self;
-    self.initialLocationSet = NO;
-    self.locationManager = [[CLLocationManager alloc]init];
-    self.locationManager.delegate = self;
-    
-    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined) {
-        [self.locationManager requestWhenInUseAuthorization];
-    }
-
-    self.theatresArray = [[NSMutableArray alloc]init];
-    
-//    [self loadTheatreLocationData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -45,38 +64,39 @@
 }
 
 -(void)loadTheatreLocationData {
-    self.movie = [[Movie alloc]init];
-    
-    NSURLSession *session = [NSURLSession sharedSession];
-    NSString *urlString = [NSString stringWithFormat:@"http://lighthouse-movie-showtimes.herokuapp.com/theatres.json?address=%@&movie=%@", self.postalCode, self.movie.title];
-    NSURL *url = [NSURL URLWithString:urlString];
-    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
-    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        if (!error) {
-            NSError *jsonParsingError;
-            NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonParsingError];
-            if (!jsonParsingError) {
-                for (NSDictionary *theatreDictionary in jsonData[@"theatres"]) {
-                    Theatre *theatre = [[Theatre alloc] init];
-                    theatre.name = theatreDictionary[@"name"];
-                    theatre.address = theatreDictionary[@"address"];
-                    theatre.idNum = theatreDictionary[@"id"];
-                    theatre.coordinate = CLLocationCoordinate2DMake([theatreDictionary[@"lat"]doubleValue], [theatreDictionary[@"lng"]doubleValue]);
-                    [self.theatresArray addObject:theatre];
+        NSURLSession *session = [NSURLSession sharedSession];
+        NSString *urlString = [NSString stringWithFormat:@"http://lighthouse-movie-showtimes.herokuapp.com/theatres.json?address=%@&movie=%@", [self.postalCode stringByReplacingOccurrencesOfString:@" " withString:@"%20"], [self.movie.title stringByReplacingOccurrencesOfString:@" " withString:@"%20"]];
+        NSURL *url = [NSURL URLWithString:urlString];
+        NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+        NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+            if (!error) {
+                NSError *jsonParsingError;
+                NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonParsingError];
+                if (!jsonParsingError) {
+                    for (NSDictionary *theatreDictionary in jsonData[@"theatres"]) {
+                        Theatre *theatre = [[Theatre alloc] init];
+                        theatre.title = theatreDictionary[@"name"];
+                        theatre.address = theatreDictionary[@"address"];
+                        theatre.idNum = theatreDictionary[@"id"];
+                        theatre.coordinate = CLLocationCoordinate2DMake([theatreDictionary[@"lat"]doubleValue], [theatreDictionary[@"lng"]doubleValue]);
+                        [self.theatresArray addObject:theatre];
+//                        NSLog(@"%@", theatre.title);
+//                        NSLog(@"%f", theatre.coordinate.latitude);
+//                        NSLog(@"%f", theatre.coordinate.longitude);
+                    }
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        
+                        for (Theatre *theatre in self.theatresArray) {
+                            MKPointAnnotation *marker = [[MKPointAnnotation alloc] init];
+                            marker.coordinate = theatre.coordinate;
+                            marker.title = theatre.title;
+                            [self.mapView addAnnotation:marker];
+                        }
+                    });
                 }
-                dispatch_async(dispatch_get_main_queue(), ^{
-                });
             }
-        }
-    }];
-    [dataTask resume];
-    
-    for (Theatre *theatre in self.theatresArray) {
-        MKPointAnnotation *marker = [[MKPointAnnotation alloc] init];
-        marker.coordinate = theatre.coordinate;
-        marker.title = theatre.name;
-        [self.mapView addAnnotation:marker];
-    }
+        }];
+        [dataTask resume];
 }
 
 #pragma mark CLLocationManagerDelegate
@@ -107,14 +127,12 @@
             if (!error) {
                 CLPlacemark *placemark = [placemarks lastObject];
                 self.postalCode = placemark.postalCode;
-                NSLog(@"Postal Code: %@", placemark.postalCode);
-                
+                [self loadTheatreLocationData];
             }
         }];
     }
     NSLog(@"%@", locations);
 }
-
 
 /*
  #pragma mark - Navigation

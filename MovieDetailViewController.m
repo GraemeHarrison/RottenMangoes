@@ -7,6 +7,7 @@
 //
 
 #import "MovieDetailViewController.h"
+#import "MapViewController.h"
 
 @interface MovieDetailViewController ()
 
@@ -33,7 +34,7 @@
 
 @implementation MovieDetailViewController
 
-- (void)setDetailItem:(id)newDetailItem {
+- (void)setDetailItem:(Movie*)newDetailItem {
     if (_detailItem != newDetailItem) {
         _detailItem = newDetailItem;
         
@@ -46,10 +47,10 @@
     // Update the user interface for the detail item.
     if (self.detailItem) {
         
-        Movie *movie = (Movie *) self.detailItem;
+//        Movie *movie = (Movie *) self.detailItem;
         
-        if ([movie.reviewsArray count]>0) {
-            Review *review1 = [movie.reviewsArray objectAtIndex:0];
+        if ([self.detailItem.reviewsArray count]>0) {
+            Review *review1 = [self.detailItem.reviewsArray objectAtIndex:0];
             self.critic1.text = [NSString stringWithFormat:@"Critic: %@", review1.critic];
             self.date1.text = [NSString stringWithFormat:@"Date: %@", review1.date];
             self.freshness1.text = [NSString stringWithFormat:@"Freshness: %@", review1.freshness];
@@ -58,8 +59,8 @@
             self.link1.text = [NSString stringWithFormat:@"Link: %@", review1.link];
         }
 
-        if ([movie.reviewsArray count]>1) {
-            Review *review2 = [movie.reviewsArray objectAtIndex:1];
+        if ([self.detailItem.reviewsArray count]>1) {
+            Review *review2 = [self.detailItem.reviewsArray objectAtIndex:1];
             self.critic2.text = [NSString stringWithFormat:@"Critic: %@", review2.critic];
             self.date2.text = [NSString stringWithFormat:@"Date: %@", review2.date];
             self.freshness2.text = [NSString stringWithFormat:@"Freshness: %@", review2.freshness];
@@ -68,8 +69,8 @@
             self.link2.text = [NSString stringWithFormat:@"Link: %@", review2.link];
         }
         
-        if ([movie.reviewsArray count]>2) {
-            Review *review3 = [movie.reviewsArray objectAtIndex:2];
+        if ([self.detailItem.reviewsArray count]>2) {
+            Review *review3 = [self.detailItem.reviewsArray objectAtIndex:2];
             self.critic3.text = [NSString stringWithFormat:@"Critic: %@", review3.critic];
             self.date3.text = [NSString stringWithFormat:@"Date: %@", review3.date];
             self.freshness3.text = [NSString stringWithFormat:@"Freshness: %@", review3.freshness];
@@ -89,14 +90,18 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
+
  #pragma mark - Navigation
  
- // In a storyboard-based application, you will often want to do a little preparation before navigation
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
+     if ([[segue identifier] isEqualToString:@"showMap"]) {
+         MapViewController *controller = (MapViewController *)[segue destinationViewController];
+         controller.detailItem = self.detailItem;
+         controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
+         controller.navigationItem.leftItemsSupplementBackButton = YES;
+     }
+     
  }
- */
+
 
 @end

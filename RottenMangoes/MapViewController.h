@@ -11,4 +11,7 @@
 
 @interface MapViewController : UIViewController
 
+@property (strong, nonatomic) id detailItem;
+
+
 @end
