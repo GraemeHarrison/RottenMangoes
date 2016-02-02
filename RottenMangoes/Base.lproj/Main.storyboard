@@ -284,10 +284,10 @@
             </objects>
             <point key="canvasLocation" x="1120" y="368"/>
         </scene>
-        <!--View Controller-->
+        <!--Map View Controller-->
         <scene sceneID="PHH-eU-RYr">
             <objects>
-                <viewController id="EMD-CR-2Dj" sceneMemberID="viewController">
+                <viewController id="EMD-CR-2Dj" customClass="MapViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dge-UG-X4u"/>
                         <viewControllerLayoutGuide type="bottom" id="fw8-e6-5rX"/>
@@ -296,7 +296,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="2c2-lG-LMw">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2c2-lG-LMw">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                             </mapView>
                         </subviews>
@@ -309,6 +309,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="r3v-5F-rNe"/>
+                    <connections>
+                        <outlet property="mapView" destination="2c2-lG-LMw" id="vvV-Ew-na9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aMB-qH-qmi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
