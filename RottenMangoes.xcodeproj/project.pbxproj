@@ -10,6 +10,7 @@
 		2E2234341C611156007F3C78 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E2234331C611156007F3C78 /* MapKit.framework */; };
 		2E2234371C61118D007F3C78 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E2234361C61118D007F3C78 /* MapViewController.m */; };
 		2E22343A1C612123007F3C78 /* Theatre.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E2234391C612123007F3C78 /* Theatre.m */; };
+		2E22343D1C61508A007F3C78 /* TheatreTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E22343C1C61508A007F3C78 /* TheatreTableViewCell.m */; };
 		2ED075251C5FC40A004625E0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ED075241C5FC40A004625E0 /* main.m */; };
 		2ED075281C5FC40B004625E0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ED075271C5FC40B004625E0 /* AppDelegate.m */; };
 		2ED0752B1C5FC40B004625E0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ED0752A1C5FC40B004625E0 /* ViewController.m */; };
@@ -28,6 +29,8 @@
 		2E2234361C61118D007F3C78 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		2E2234381C612123007F3C78 /* Theatre.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Theatre.h; sourceTree = "<group>"; };
 		2E2234391C612123007F3C78 /* Theatre.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Theatre.m; sourceTree = "<group>"; };
+		2E22343B1C61508A007F3C78 /* TheatreTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheatreTableViewCell.h; sourceTree = "<group>"; };
+		2E22343C1C61508A007F3C78 /* TheatreTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheatreTableViewCell.m; sourceTree = "<group>"; };
 		2ED075201C5FC40A004625E0 /* RottenMangoes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RottenMangoes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2ED075241C5FC40A004625E0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2ED075261C5FC40B004625E0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -96,6 +99,8 @@
 				2ED075471C5FF1EA004625E0 /* Review.m */,
 				2ED0753D1C5FCDA6004625E0 /* MovieCell.h */,
 				2ED0753E1C5FCDA6004625E0 /* MovieCell.m */,
+				2E22343B1C61508A007F3C78 /* TheatreTableViewCell.h */,
+				2E22343C1C61508A007F3C78 /* TheatreTableViewCell.m */,
 				2ED0752C1C5FC40B004625E0 /* Main.storyboard */,
 				2ED0752F1C5FC40B004625E0 /* Assets.xcassets */,
 				2ED075311C5FC40B004625E0 /* LaunchScreen.storyboard */,
@@ -186,6 +191,7 @@
 				2ED075451C5FE67A004625E0 /* MovieDetailViewController.m in Sources */,
 				2ED0752B1C5FC40B004625E0 /* ViewController.m in Sources */,
 				2ED0753F1C5FCDA6004625E0 /* MovieCell.m in Sources */,
+				2E22343D1C61508A007F3C78 /* TheatreTableViewCell.m in Sources */,
 				2E2234371C61118D007F3C78 /* MapViewController.m in Sources */,
 				2ED075281C5FC40B004625E0 /* AppDelegate.m in Sources */,
 				2ED0753C1C5FCC02004625E0 /* Movie.m in Sources */,
