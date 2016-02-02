@@ -41,7 +41,7 @@
                                                         <constraint firstAttribute="height" constant="34" id="QkV-PI-92u"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2wg-ax-EZQ">
@@ -252,7 +252,13 @@
                             <constraint firstItem="VP8-Pa-ab3" firstAttribute="top" secondItem="bdw-lJ-7r3" secondAttribute="bottom" constant="4" id="zjy-UL-RuZ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="nS8-gD-Q2B"/>
+                    <navigationItem key="navigationItem" id="nS8-gD-Q2B">
+                        <barButtonItem key="rightBarButtonItem" title="Show Theatre Map" id="nHu-YE-MLC">
+                            <connections>
+                                <segue destination="EMD-CR-2Dj" kind="push" identifier="showMap" id="3Tk-CT-MNL"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="critic1" destination="qe5-4m-iuC" id="8Gr-WR-Vit"/>
                         <outlet property="critic2" destination="ZOz-UA-LAQ" id="DCo-RC-es4"/>
@@ -278,6 +284,36 @@
             </objects>
             <point key="canvasLocation" x="1120" y="368"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="PHH-eU-RYr">
+            <objects>
+                <viewController id="EMD-CR-2Dj" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dge-UG-X4u"/>
+                        <viewControllerLayoutGuide type="bottom" id="fw8-e6-5rX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qZL-Nh-HnX">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="2c2-lG-LMw">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="2c2-lG-LMw" secondAttribute="trailing" id="AXw-6Q-k0Z"/>
+                            <constraint firstItem="2c2-lG-LMw" firstAttribute="leading" secondItem="qZL-Nh-HnX" secondAttribute="leading" id="JYz-ID-ymr"/>
+                            <constraint firstItem="2c2-lG-LMw" firstAttribute="top" secondItem="dge-UG-X4u" secondAttribute="bottom" id="QWO-dt-8un"/>
+                            <constraint firstItem="fw8-e6-5rX" firstAttribute="top" secondItem="2c2-lG-LMw" secondAttribute="bottom" id="nyU-Rh-YuT"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="r3v-5F-rNe"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aMB-qH-qmi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1568" y="368"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="btK-3Q-MPf">
             <objects>
@@ -286,6 +322,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Uq1-Kl-pE9">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
