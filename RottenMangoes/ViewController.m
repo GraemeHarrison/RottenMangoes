@@ -16,6 +16,9 @@
 @property (strong, nonatomic) NSMutableArray *moviesArray;
 @property (strong,nonatomic) UICollectionViewFlowLayout *mainLayout;
 @property (nonatomic, assign) int cellLength;
+@property (nonatomic, assign) int pageNum;
+@property (nonatomic, strong) NSString *total;
+
 
 @end
 
@@ -24,18 +27,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.cellLength = (self.view.frame.size.width)/2.0;
+    self.cellLength = (self.view.frame.size.width-0.5)/2.0;
     self.mainLayout = [[UICollectionViewFlowLayout alloc] init];
     self.mainLayout.itemSize = CGSizeMake(self.cellLength, self.cellLength);
     self.mainLayout.minimumInteritemSpacing = 1;
-    self.mainLayout.minimumLineSpacing = 1;
+    self.mainLayout.minimumLineSpacing = 2;
     self.mainLayout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0); // (Left, Right, Top, Bottom)
     self.collectionView.collectionViewLayout = self.mainLayout;
     
     self.moviesArray = [[NSMutableArray alloc] init];
-    
+    self.pageNum = 1;
+    [self loadData];
+}
+
+-(void)loadData {
     NSURLSession *session = [NSURLSession sharedSession];
-    NSString *urlString = @"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=h8ym7ry7kkur36j7ku482y9z&page_limit=50";
+    NSString *urlString = [NSString stringWithFormat:@"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=h8ym7ry7kkur36j7ku482y9z&page_limit=50&page=%d", self.pageNum];
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -43,6 +50,7 @@
             NSError *jsonParsingError;
             NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonParsingError];
             if (!jsonParsingError) {
+                self.total = jsonData[@"total"];
                 for (NSDictionary *movieDictionary in jsonData[@"movies"]) {
                     Movie *movie = [[Movie alloc] init];
                     movie.title = movieDictionary[@"title"];
@@ -78,12 +86,10 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.moviesArray.count;
-//    return 50;
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     //Maybe add more sections to view movies that aren't yet in theatres?
-    //If method not included it defaults to 1.
     return 1;
 }
 
@@ -96,6 +102,16 @@
     movieCell.movieImageView.clipsToBounds = YES;
     movieCell.movieImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:movie.image]]];
     return movieCell;
+}
+
+-(void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
+    int totalNum = [self.total intValue];
+    if ([self.moviesArray count] < totalNum) {
+        if (indexPath.item == [self.moviesArray count] - 1) {
+            self.pageNum++;
+            [self loadData];
+        }
+    }
 }
 
 @end
