@@ -15,7 +15,7 @@
 @property (strong, nonatomic) NSString *idNum;
 @property (nonatomic) CLLocationCoordinate2D coordinate;
 @property (assign, nonatomic) double distance;
-@property (nonatomic) CLLocation* location;
+@property (nonatomic) CLLocation *location;
 
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *subtitle;

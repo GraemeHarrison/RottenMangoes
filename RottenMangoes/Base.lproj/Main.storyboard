@@ -298,41 +298,40 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2c2-lG-LMw">
-                                <rect key="frame" x="0.0" y="64" width="320" height="248"/>
+                                <rect key="frame" x="0.0" y="94" width="320" height="218"/>
                             </mapView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="79" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rv8-zc-03C">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="42" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rv8-zc-03C">
                                 <rect key="frame" x="0.0" y="312" width="320" height="256"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TheatreCell" rowHeight="79" id="qoi-eX-6O6" customClass="TheatreTableViewCell">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="79"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TheatreCell" rowHeight="42" id="qoi-eX-6O6" customClass="TheatreTableViewCell">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="42"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qoi-eX-6O6" id="6WW-Mb-Xcu">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="78"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="41"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dql-VM-dY8">
-                                                    <rect key="frame" x="8" y="0.0" width="296" height="30"/>
-                                                    <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <rect key="frame" x="8" y="0.0" width="296" height="20"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="3Uw-pD-3qF"/>
+                                                        <constraint firstAttribute="height" constant="20" id="3Uw-pD-3qF"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hM2-bY-W69">
-                                                    <rect key="frame" x="8" y="38" width="296" height="21"/>
+                                                    <rect key="frame" x="8" y="20" width="296" height="20"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="mxI-fu-raW"/>
+                                                        <constraint firstAttribute="height" constant="20" id="mxI-fu-raW"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="hM2-bY-W69" firstAttribute="top" secondItem="Dql-VM-dY8" secondAttribute="bottom" constant="8" id="8Ci-r3-EL3"/>
+                                                <constraint firstItem="hM2-bY-W69" firstAttribute="top" secondItem="Dql-VM-dY8" secondAttribute="bottom" id="8Ci-r3-EL3"/>
                                                 <constraint firstItem="Dql-VM-dY8" firstAttribute="trailing" secondItem="6WW-Mb-Xcu" secondAttribute="trailingMargin" constant="-8" id="LkO-tE-SfK"/>
                                                 <constraint firstItem="Dql-VM-dY8" firstAttribute="top" secondItem="6WW-Mb-Xcu" secondAttribute="top" id="S0P-oW-xgO"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="hM2-bY-W69" secondAttribute="trailing" constant="8" id="Xmc-qI-aAU"/>
@@ -347,16 +346,28 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Another Postal Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="86l-En-NFZ">
+                                <rect key="frame" x="0.0" y="64" width="320" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="yR9-W1-3VI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="86l-En-NFZ" firstAttribute="top" secondItem="dge-UG-X4u" secondAttribute="bottom" id="2po-gh-cWD"/>
                             <constraint firstAttribute="trailing" secondItem="2c2-lG-LMw" secondAttribute="trailing" id="AXw-6Q-k0Z"/>
                             <constraint firstItem="2c2-lG-LMw" firstAttribute="leading" secondItem="qZL-Nh-HnX" secondAttribute="leading" id="JYz-ID-ymr"/>
-                            <constraint firstItem="2c2-lG-LMw" firstAttribute="top" secondItem="dge-UG-X4u" secondAttribute="bottom" id="QWO-dt-8un"/>
+                            <constraint firstAttribute="trailing" secondItem="86l-En-NFZ" secondAttribute="trailing" id="Ljb-Xb-vXc"/>
+                            <constraint firstItem="2c2-lG-LMw" firstAttribute="top" secondItem="dge-UG-X4u" secondAttribute="bottom" constant="30" id="QWO-dt-8un"/>
                             <constraint firstItem="fw8-e6-5rX" firstAttribute="top" secondItem="rv8-zc-03C" secondAttribute="bottom" id="adE-FU-m1h"/>
+                            <constraint firstItem="2c2-lG-LMw" firstAttribute="top" secondItem="86l-En-NFZ" secondAttribute="bottom" id="cgT-cV-Atq"/>
                             <constraint firstItem="rv8-zc-03C" firstAttribute="leading" secondItem="qZL-Nh-HnX" secondAttribute="leading" id="hxj-33-bMq"/>
                             <constraint firstItem="rv8-zc-03C" firstAttribute="top" secondItem="2c2-lG-LMw" secondAttribute="bottom" id="l8d-o4-kfi"/>
                             <constraint firstItem="2c2-lG-LMw" firstAttribute="bottom" secondItem="fw8-e6-5rX" secondAttribute="top" multiplier="0.55" id="oJk-dw-Fiv"/>
+                            <constraint firstItem="86l-En-NFZ" firstAttribute="leading" secondItem="qZL-Nh-HnX" secondAttribute="leading" id="t65-oc-GZI"/>
                             <constraint firstAttribute="trailing" secondItem="rv8-zc-03C" secondAttribute="trailing" id="tEA-0f-0VI"/>
                         </constraints>
                     </view>
@@ -364,6 +375,7 @@
                     <connections>
                         <outlet property="mapView" destination="2c2-lG-LMw" id="vvV-Ew-na9"/>
                         <outlet property="tableView" destination="rv8-zc-03C" id="Y7c-6f-Q06"/>
+                        <outlet property="textField" destination="86l-En-NFZ" id="jJx-k8-Anh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aMB-qH-qmi" userLabel="First Responder" sceneMemberID="firstResponder"/>
