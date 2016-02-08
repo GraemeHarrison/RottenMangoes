@@ -10,6 +10,7 @@
 #import "Movie.h"
 #import "Theatre.h"
 #import "TheatreTableViewCell.h"
+#import "DirectionsViewController.h"
 
 @interface MapViewController () <CLLocationManagerDelegate, MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
@@ -41,7 +42,7 @@
     if (self.detailItem) {
         
         self.movie = (Movie*) self.detailItem;
-//        NSLog(@"movie title: %@", self.movie.title);
+        //        NSLog(@"movie title: %@", self.movie.title);
         
         self.initialLocationSet = NO;
         self.isPostalCodeSet = NO;
@@ -69,61 +70,61 @@
 }
 
 -(void)loadTheatreLocationData:(CLLocation*)location {
-        NSURLSession *session = [NSURLSession sharedSession];
-        NSString *urlString = [NSString stringWithFormat:@"http://lighthouse-movie-showtimes.herokuapp.com/theatres.json?address=%@&movie=%@", [self.postalCode stringByReplacingOccurrencesOfString:@" " withString:@"%20"], [self.movie.title stringByReplacingOccurrencesOfString:@" " withString:@"%20"]];
-        NSURL *url = [NSURL URLWithString:urlString];
-        NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
-        NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-            if (!error) {
-                NSError *jsonParsingError;
-                NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonParsingError];
-                if (!jsonParsingError) {
-                    for (NSDictionary *theatreDictionary in jsonData[@"theatres"]) {
-                        Theatre *theatre = [[Theatre alloc] init];
-                        theatre.title = theatreDictionary[@"name"];
-                        theatre.subtitle = theatreDictionary[@"address"];
-                        theatre.idNum = theatreDictionary[@"id"];
-                        theatre.coordinate = CLLocationCoordinate2DMake([theatreDictionary[@"lat"]doubleValue], [theatreDictionary[@"lng"]doubleValue]);
-                        theatre.location = [[CLLocation alloc]initWithLatitude:theatre.coordinate.latitude longitude:theatre.coordinate.longitude];
-                        theatre.distance = [location distanceFromLocation:theatre.location];
-                        [self.theatresArray addObject:theatre];
-                    }
-                    if (self.theatresArray.count == 0) {
-                        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Something Ain't Right"
-                                                                                                 message:@"Dude, this movie ain't showing here yo."
-                                                                                          preferredStyle:UIAlertControllerStyleAlert];
-                        //We add buttons to the alert controller by creating UIAlertActions:
-                        UIAlertAction *actionOk = [UIAlertAction actionWithTitle:@"Ok"
-                                                                           style:UIAlertActionStyleDefault
-                                                                         handler:nil]; //You can use a block here to handle a press on this button
-                        [alertController addAction:actionOk];
-                        [self presentViewController:alertController animated:YES completion:nil];                    }
-                    
-                    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"distance" ascending:YES];
-                    self.theatresArray = [[self.theatresArray sortedArrayUsingDescriptors:@[sortDescriptor] ]mutableCopy];
-                    
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        
-//                        for (Theatre *theatre in self.theatresArray) {
-//                            MKPointAnnotation *marker = [[MKPointAnnotation alloc] init];
-//                            marker.coordinate = theatre.coordinate;
-//                            marker.title = theatre.title;
-//                            marker.subtitle = theatre.subtitle;
-//                            [self.mapView addAnnotation:marker];
-//                        }
-                        [self.mapView addAnnotations:self.theatresArray];
-                        [self.tableView reloadData];
-                    });
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSString *urlString = [NSString stringWithFormat:@"http://lighthouse-movie-showtimes.herokuapp.com/theatres.json?address=%@&movie=%@", [self.postalCode stringByReplacingOccurrencesOfString:@" " withString:@"%20"], [self.movie.title stringByReplacingOccurrencesOfString:@" " withString:@"%20"]];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (!error) {
+            NSError *jsonParsingError;
+            NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonParsingError];
+            if (!jsonParsingError) {
+                for (NSDictionary *theatreDictionary in jsonData[@"theatres"]) {
+                    Theatre *theatre = [[Theatre alloc] init];
+                    theatre.title = theatreDictionary[@"name"];
+                    theatre.subtitle = theatreDictionary[@"address"];
+                    theatre.idNum = theatreDictionary[@"id"];
+                    theatre.coordinate = CLLocationCoordinate2DMake([theatreDictionary[@"lat"]doubleValue], [theatreDictionary[@"lng"]doubleValue]);
+                    theatre.location = [[CLLocation alloc]initWithLatitude:theatre.coordinate.latitude longitude:theatre.coordinate.longitude];
+                    theatre.distance = [location distanceFromLocation:theatre.location];
+                    [self.theatresArray addObject:theatre];
                 }
+                if (self.theatresArray.count == 0) {
+                    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Something Ain't Right"
+                                                                                             message:@"Dude, this movie ain't showing here yo."
+                                                                                      preferredStyle:UIAlertControllerStyleAlert];
+                    //We add buttons to the alert controller by creating UIAlertActions:
+                    UIAlertAction *actionOk = [UIAlertAction actionWithTitle:@"Ok"
+                                                                       style:UIAlertActionStyleDefault
+                                                                     handler:nil]; //You can use a block here to handle a press on this button
+                    [alertController addAction:actionOk];
+                    [self presentViewController:alertController animated:YES completion:nil];                    }
+                
+                NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"distance" ascending:YES];
+                self.theatresArray = [[self.theatresArray sortedArrayUsingDescriptors:@[sortDescriptor] ]mutableCopy];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    //                        for (Theatre *theatre in self.theatresArray) {
+                    //                            MKPointAnnotation *marker = [[MKPointAnnotation alloc] init];
+                    //                            marker.coordinate = theatre.coordinate;
+                    //                            marker.title = theatre.title;
+                    //                            marker.subtitle = theatre.subtitle;
+                    //                            [self.mapView addAnnotation:marker];
+                    //                        }
+                    [self.mapView addAnnotations:self.theatresArray];
+                    [self.tableView reloadData];
+                });
             }
-        }];
-        [dataTask resume];
+        }
+    }];
+    [dataTask resume];
 }
 
 #pragma mark CLLocationManagerDelegate
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
-//    NSLog(@"Authorization changed");
+    //    NSLog(@"Authorization changed");
     
     // If the user's allowed us to use their location, we can start getting location updates
     if (status == kCLAuthorizationStatusAuthorizedWhenInUse) {
@@ -141,7 +142,7 @@
         CLLocationCoordinate2D userCoordinate = userLocation.coordinate;
         MKCoordinateRegion userRegion = MKCoordinateRegionMake(userCoordinate, MKCoordinateSpanMake(0.08, 0.08));
         [self.mapView setRegion:userRegion animated:YES];
-      
+        
         CLGeocoder *geoCoder = [[CLGeocoder alloc] init];
         [geoCoder reverseGeocodeLocation:userLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
             if (!error) {
@@ -151,18 +152,7 @@
             }
         }];
     }
-//    NSLog(@"%@", locations);
 }
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 #pragma mark UITextFieldDelegate
 
@@ -202,13 +192,87 @@
     return cell;
 }
 
-//#pragma mark UITableViewDelegate
+#pragma mark UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//    Theatre *theatre = self.theatresArray[indexPath.row];
+//    [self getDirections:theatre];
+    }
+
+//-(void)getDirections:(Theatre *)theatre {
+//    CLGeocoder *geoCoder = [[CLGeocoder alloc] init];
+//    [geoCoder geocodeAddressString:self.postalCode completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+//        if (!error) {
+//            CLPlacemark *placemark = [placemarks lastObject];
+//            CLLocationCoordinate2D userCoordinate = placemark.location.coordinate;
+//            double userLat = userCoordinate.latitude;
+//            double userLong = userCoordinate.longitude;
+//            
+//            double destinationLat = theatre.coordinate.latitude;
+//            double destinationLong = theatre.coordinate.longitude;
+//            
+//            MKPlacemark *source = [[MKPlacemark alloc]initWithCoordinate:CLLocationCoordinate2DMake(userLat, userLong) addressDictionary:[NSDictionary dictionaryWithObjectsAndKeys:@"",@"", nil]];
+//            
+//            MKMapItem *srcMapItem = [[MKMapItem alloc]initWithPlacemark:source];
+//            [srcMapItem setName:@""];
+//            
+//            MKPlacemark *destination = [[MKPlacemark alloc]initWithCoordinate:CLLocationCoordinate2DMake(destinationLat, destinationLong) addressDictionary:[NSDictionary dictionaryWithObjectsAndKeys:@"",@"", nil] ];
+//            
+//            MKMapItem *distMapItem = [[MKMapItem alloc]initWithPlacemark:destination];
+//            [distMapItem setName:@""];
+//            
+//            MKDirectionsRequest *request = [[MKDirectionsRequest alloc]init];
+//            [request setSource:srcMapItem];
+//            [request setDestination:distMapItem];
+//            [request setTransportType:MKDirectionsTransportTypeWalking];
+//            
+//            MKDirections *direction = [[MKDirections alloc]initWithRequest:request];
+//            
+//            [direction calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse *response, NSError *error) {
+//                
+//                NSLog(@"response = %@",response); // Response
+//                NSArray *arrRoutes = [response routes];
+//                [arrRoutes enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+//                    
+//                    MKRoute *route = obj;
+//                    
+//                    MKPolyline *line = [route polyline];
+//                    [self.mapView addOverlay:line];
+//                    NSLog(@"Rout Name : %@",route.name); // Route name
+//                    NSLog(@"Total Distance (in Meters) :%f",route.distance); // Route distance
+//                    
+//                    NSArray *steps = [route steps];
+//                    
+//                    NSLog(@"Total Steps : %lu",(unsigned long)[steps count]); // Steps count
+//                    
+//                    [steps enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+//                        NSLog(@"Rout Instruction : %@",[obj instructions]); // Route instruction
+//                        NSLog(@"Rout Distance : %f",[obj distance]); // Route distance
+//                    }];
+//                }];
+//            }];
+//        }
+//    }];
 //
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 //}
+
+
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"showDirections"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        Theatre *theatre = self.theatresArray[indexPath.row];
+        DirectionsViewController *controller = (DirectionsViewController *)[segue destinationViewController];
+        controller.theatre = theatre;
+        controller.postalCode = self.postalCode;
+        controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
+        controller.navigationItem.leftItemsSupplementBackButton = YES;
+    }
+}
+
 //
 //- (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
 //}
-
 
 @end

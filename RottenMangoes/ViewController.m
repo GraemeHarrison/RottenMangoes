@@ -54,7 +54,7 @@
                 for (NSDictionary *movieDictionary in jsonData[@"movies"]) {
                     Movie *movie = [[Movie alloc] init];
                     movie.title = movieDictionary[@"title"];
-                    movie.image = movieDictionary[@"posters"][@"original"];
+                    movie.imageURLString = movieDictionary[@"posters"][@"original"];
                     movie.idNum = movieDictionary[@"id"];
                     [self.moviesArray addObject:movie];
                 }
@@ -97,10 +97,12 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     MovieCell *movieCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MovieCell" forIndexPath:indexPath];
     Movie *movie = self.moviesArray[indexPath.item];
-    movieCell.movieTitleLabel.text = movie.title;
-    movieCell.movieImageView.contentMode = UIViewContentModeScaleAspectFit;
-    movieCell.movieImageView.clipsToBounds = YES;
-    movieCell.movieImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:movie.image]]];
+    [movieCell setMovieCellLabels:movie];
+    [movieCell setMovieCellImage:movie];
+//    movieCell.movieTitleLabel.text = movie.title;
+//    movieCell.movieImageView.contentMode = UIViewContentModeScaleAspectFit;
+//    movieCell.movieImageView.clipsToBounds = YES;
+//    movieCell.movieImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:movie.image]]];
     return movieCell;
 }
 

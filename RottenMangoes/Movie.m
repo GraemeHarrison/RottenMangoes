@@ -15,7 +15,7 @@
     self = [super init];
     if (self) {
         _title = title;
-        _image = image;
+        _imageURLString = image;
         _reviewsArray = [[NSMutableArray alloc]init];
     }
     return self;

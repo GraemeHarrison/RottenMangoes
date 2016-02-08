@@ -12,7 +12,7 @@
 @interface Movie : NSObject
 
 @property (strong, nonatomic) NSString *title;
-@property (strong, nonatomic) NSString *image;
+@property (strong, nonatomic) NSString *imageURLString;
 @property (strong, nonatomic) NSString *idNum;
 @property (strong, nonatomic) NSMutableArray *reviewsArray;
 

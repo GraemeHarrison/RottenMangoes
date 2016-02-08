@@ -11,6 +11,7 @@
 		2E2234371C61118D007F3C78 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E2234361C61118D007F3C78 /* MapViewController.m */; };
 		2E22343A1C612123007F3C78 /* Theatre.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E2234391C612123007F3C78 /* Theatre.m */; };
 		2E22343D1C61508A007F3C78 /* TheatreTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E22343C1C61508A007F3C78 /* TheatreTableViewCell.m */; };
+		2E2234401C61850C007F3C78 /* DirectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E22343F1C61850C007F3C78 /* DirectionsViewController.m */; };
 		2ED075251C5FC40A004625E0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ED075241C5FC40A004625E0 /* main.m */; };
 		2ED075281C5FC40B004625E0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ED075271C5FC40B004625E0 /* AppDelegate.m */; };
 		2ED0752B1C5FC40B004625E0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ED0752A1C5FC40B004625E0 /* ViewController.m */; };
@@ -31,6 +32,8 @@
 		2E2234391C612123007F3C78 /* Theatre.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Theatre.m; sourceTree = "<group>"; };
 		2E22343B1C61508A007F3C78 /* TheatreTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheatreTableViewCell.h; sourceTree = "<group>"; };
 		2E22343C1C61508A007F3C78 /* TheatreTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheatreTableViewCell.m; sourceTree = "<group>"; };
+		2E22343E1C61850C007F3C78 /* DirectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectionsViewController.h; sourceTree = "<group>"; };
+		2E22343F1C61850C007F3C78 /* DirectionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectionsViewController.m; sourceTree = "<group>"; };
 		2ED075201C5FC40A004625E0 /* RottenMangoes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RottenMangoes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2ED075241C5FC40A004625E0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2ED075261C5FC40B004625E0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -91,6 +94,8 @@
 				2ED075441C5FE67A004625E0 /* MovieDetailViewController.m */,
 				2E2234351C61118D007F3C78 /* MapViewController.h */,
 				2E2234361C61118D007F3C78 /* MapViewController.m */,
+				2E22343E1C61850C007F3C78 /* DirectionsViewController.h */,
+				2E22343F1C61850C007F3C78 /* DirectionsViewController.m */,
 				2ED0753A1C5FCC02004625E0 /* Movie.h */,
 				2ED0753B1C5FCC02004625E0 /* Movie.m */,
 				2E2234381C612123007F3C78 /* Theatre.h */,
@@ -198,6 +203,7 @@
 				2E22343A1C612123007F3C78 /* Theatre.m in Sources */,
 				2ED075481C5FF1EA004625E0 /* Review.m in Sources */,
 				2ED075251C5FC40A004625E0 /* main.m in Sources */,
+				2E2234401C61850C007F3C78 /* DirectionsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
